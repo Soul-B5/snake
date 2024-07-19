@@ -8,8 +8,7 @@
 
 ## **运行条件**
 - 测试环境 
-    - win10 64位,Python 3.7, 终端为 cmd、unshell、powershell
-py`,即可启动。
+    - win10 64位,Python 3.7, 测试终端为 cmd、unshell、powershell。
 
 ## **游戏规则**
 - 游戏地图由n*n的格子组成的围墙构成。
