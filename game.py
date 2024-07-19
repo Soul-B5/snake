@@ -3,7 +3,7 @@ import msvcrt # 用于监听键盘
 from typing import Union # 复合类型注释，没用明白。
 from map import Map
 from snake import Snake
-from polt import polt
+from polt import Polt
 import sys
  
 def game_over():
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     snake = Snake()
     
     global direction_key
-    direction_key = 4 # 默认方向为上 4:up, 5:down, 6:left, 7:right
+    direction_key = 7 # 默认方向为上 4:up, 5:down, 6:left, 7:right
     
     # 暂时不考虑资源竞争问题
     t1 = threading.Thread(target=listen_keyboard)
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     switch = True
      # 速度为1.3s/蛇身长
 
-    polt.clear_screen()
+    Polt.clear_screen()
 
     while switch:
         speed = 20/(snake.length + 20) 
@@ -90,8 +90,8 @@ if __name__ == "__main__":
         else:
             pass
 
-        polt.set_cursor_top()  
-        plt = polt(map.col,map.row)
+        Polt.set_cursor_top()  
+        plt = Polt(map.col,map.row)
         map_ = plt.map_snake_union(map.walk,snake)
         sys.stdout.write("speed: %.2f step/s\n" % float(1/speed))
                 

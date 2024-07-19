@@ -1,6 +1,6 @@
 from copy import deepcopy
 import sys
-import Snake # 怎么自定义类的类型提示？
+from snake import Snake # 怎么自定义类的类型提示？
 
 UP = "\033[32m{}\033[0m".format(" ▲")
 DOWN = "\033[32m{}\033[0m".format(" ▼")
@@ -9,10 +9,10 @@ RIGHT = "\033[32m{}\033[0m".format(" ▶")
 
 BODY = "\033[36m{}\033[0m".format(" ◕")
 
-WALK = "\033[30m{}\033[0m".format(" &")
+WALK = "\033[33m{}\033[0m".format(" &")
 FOOD = "\033[31m{}\033[0m".format(" *")
 
-class polt(object):
+class Polt(object):
 
     events = {"air":0, 
               "walk":1, 
@@ -46,22 +46,22 @@ class polt(object):
         res = ""
         for i in range(self.lenght):
             for j in range(self.width):
-                if map[i][j] == polt.events["air"]: 
-                    res += polt.lump['air']
-                elif map[i][j] == polt.events["walk"]:
-                    res += polt.lump['walk']
-                elif map[i][j] == polt.events["food"]:
-                    res += polt.lump["food"]
-                elif map[i][j] == polt.events["snake_body"]:
-                    res += polt.lump["snake_body"]
-                elif map[i][j] == polt.events["snake_head_up"]:
-                    res += polt.lump["snake_head_up"]
-                elif map[i][j] == polt.events["snake_head_down"]:
-                    res += polt.lump["snake_head_down"]
-                elif map[i][j] == polt.events["snake_head_left"]:
-                    res += polt.lump["snake_head_left"]
-                elif map[i][j] == polt.events["snake_head_right"]:
-                    res += polt.lump["snake_head_right"]
+                if map[i][j] == Polt.events["air"]: 
+                    res += Polt.lump['air']
+                elif map[i][j] == Polt.events["walk"]:
+                    res += Polt.lump['walk']
+                elif map[i][j] == Polt.events["food"]:
+                    res += Polt.lump["food"]
+                elif map[i][j] == Polt.events["snake_body"]:
+                    res += Polt.lump["snake_body"]
+                elif map[i][j] == Polt.events["snake_head_up"]:
+                    res += Polt.lump["snake_head_up"]
+                elif map[i][j] == Polt.events["snake_head_down"]:
+                    res += Polt.lump["snake_head_down"]
+                elif map[i][j] == Polt.events["snake_head_left"]:
+                    res += Polt.lump["snake_head_left"]
+                elif map[i][j] == Polt.events["snake_head_right"]:
+                    res += Polt.lump["snake_head_right"]
                 else:
                     pass
             res += "\n"
@@ -80,7 +80,7 @@ class polt(object):
         '''
         res = deepcopy(map)
         for lump in snake.body:
-            res[lump[0]][lump[1]] = polt.events["snake_body"] # 蛇身
+            res[lump[0]][lump[1]] = Polt.events["snake_body"] # 蛇身
         res[snake.head[0]][snake.head[1]] = snake.direction 
 
         self.plot_ui(res, snake.head, snake.direction, snake.length)

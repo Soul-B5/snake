@@ -4,8 +4,8 @@ class Snake(): # 加上Object,可使用一些基本方法
                  'left' : 6, 'right': 7} 
     def __init__(self):
         self.name = "snake_1"
-        self.direction = Snake.direction["up"]
-        self.head = (5,5)
+        self.direction = Snake.direction["right"]
+        self.head = (1,1)
         self.body = [self.head]
         self.length = 1 
 
