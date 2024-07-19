@@ -6,9 +6,7 @@ UP = "\033[32m{}\033[0m".format(" ▲")
 DOWN = "\033[32m{}\033[0m".format(" ▼")
 LEFT = "\033[32m{}\033[0m".format("◀ ")
 RIGHT = "\033[32m{}\033[0m".format(" ▶")
-
 BODY = "\033[36m{}\033[0m".format(" ◕")
-
 WALK = "\033[33m{}\033[0m".format(" &")
 FOOD = "\033[31m{}\033[0m".format(" *")
 
@@ -36,6 +34,7 @@ class Polt(object):
         self.lenght = col
         self.width = row
     def plot_ui(self,map:list, head:tuple, direction:int, lenght:int)->None:
+
         '''
         polt the ui
         
@@ -43,32 +42,32 @@ class Polt(object):
             map: 2-dimensional list
         '''
 
-        res = ""
+        string  = ""
         for i in range(self.lenght):
             for j in range(self.width):
                 if map[i][j] == Polt.events["air"]: 
-                    res += Polt.lump['air']
+                    string  += Polt.lump['air']
                 elif map[i][j] == Polt.events["walk"]:
-                    res += Polt.lump['walk']
+                    string  += Polt.lump['walk']
                 elif map[i][j] == Polt.events["food"]:
-                    res += Polt.lump["food"]
+                    string  += Polt.lump["food"]
                 elif map[i][j] == Polt.events["snake_body"]:
-                    res += Polt.lump["snake_body"]
+                    string  += Polt.lump["snake_body"]
                 elif map[i][j] == Polt.events["snake_head_up"]:
-                    res += Polt.lump["snake_head_up"]
+                    string  += Polt.lump["snake_head_up"]
                 elif map[i][j] == Polt.events["snake_head_down"]:
-                    res += Polt.lump["snake_head_down"]
+                    string  += Polt.lump["snake_head_down"]
                 elif map[i][j] == Polt.events["snake_head_left"]:
-                    res += Polt.lump["snake_head_left"]
+                    string  += Polt.lump["snake_head_left"]
                 elif map[i][j] == Polt.events["snake_head_right"]:
-                    res += Polt.lump["snake_head_right"]
+                    string  += Polt.lump["snake_head_right"]
                 else:
                     pass
-            res += "\n"
-        res += "snake head: {}                      \n".format(head)
-        res += "snake direction: {}                 \n".format(direction)
-        res += "snake body length: {}               \n".format(lenght)
-        sys.stdout.write(res)
+            string  += "\n"
+        string  += "snake head: {}                      \n".format(head)
+        string  += "snake direction: {}                 \n".format(direction)
+        string  += "snake body length: {}               \n".format(lenght)
+        sys.stdout.write(string )
 
     def map_snake_union(self,map:list,snake:Snake)->None:
         '''
@@ -78,17 +77,17 @@ class Polt(object):
             map: 2-dimensional list                 |list[list[int]]
             snake: Snake object                     |Snake
         '''
-        res = deepcopy(map)
+        _map = deepcopy(map)
         for lump in snake.body:
-            res[lump[0]][lump[1]] = Polt.events["snake_body"] # 蛇身
-        res[snake.head[0]][snake.head[1]] = snake.direction 
+            _map[lump[0]][lump[1]] = Polt.events["snake_body"] # 蛇身
+        _map[snake.head[0]][snake.head[1]] = snake.direction 
 
-        self.plot_ui(res, snake.head, snake.direction, snake.length)
+        self.plot_ui(_map, snake.head, snake.direction, snake.length)
 
     def clear_screen():
       '''命令行清屏'''
       sys.stdout.write("cls")
 
     def set_cursor_top():
-        '''光标置顶'''
-        sys.stdout.write("\033[0;0H") # 清屏
+        '''光标置顶,左上角'''
+        sys.stdout.write("\033[0;0H") 
